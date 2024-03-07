@@ -16,12 +16,7 @@ const db = require("../Config/dbConfig");
 
   const updateStatus = (req, res) => {
     const { LeadId, Status, subStage } = req.body;
-    const sql = "SELECT * FROM DocumentList WHERE LeadId =?";
-    db.query(sql, [LeadId], (err, result) => {
-      if (err) {
-        res.status(500).send("Internal Server Error");
-        return;
-      }
+
       const statusDetails = `
       UPDATE ClaimStatus
       SET
@@ -38,7 +33,6 @@ const db = require("../Config/dbConfig");
         }
         res.send(result);
       });
-    });
   };
   
 
