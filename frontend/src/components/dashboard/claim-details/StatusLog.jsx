@@ -100,8 +100,10 @@ const StatusLog = ({leadId,status,statusOptions,subStatus,claim,documents}) => {
 
   const getValueFromDocName=(docName)=>{
     let value = -1;
+    
     data.map((temp,index)=>{
-      if(String(data.doc_name) === String(docName)){
+      
+      if(String(temp.doc_name) === String(docName)){
         value = temp.serial_num;
       }
     })
@@ -125,23 +127,25 @@ const StatusLog = ({leadId,status,statusOptions,subStatus,claim,documents}) => {
 
   //function to update the status on documents validation
   const checkIsValidated = ()=>{
-      let arr = new Array(17+1).fill(0);
+      let arr = new Array(18).fill(0);
+      arr[0]=1;
+      console.log(documents)
       documents?.map((doc,index)=>{
         const value = getValueFromDocName(doc.docName);
         arr[value]++;
       })
 
       const upperValue = getUpperBound();
-      console.log(upperValue);
+      console.log(upperValue,arr);
 
-      let canUpdateStatus = true;
+      let canUpdateStatus = 0;
       arr.map((value,index)=>{
-        if(Number(value) <= Number(upperValue) && Number(value) <= 0 ){
-            canUpdateStatus=false;
+        if(Number(index) <= Number(upperValue)  && value){
+         canUpdateStatus +=1;
         }
       })
 
-      return canUpdateStatus;
+      return (canUpdateStatus -1) === upperValue;
 
       
   }
@@ -197,8 +201,7 @@ const StatusLog = ({leadId,status,statusOptions,subStatus,claim,documents}) => {
               onChange={(e)=>setStat(e.target.value)}
             >
               {statusOptions.map((stat,index)=>{
-                return ( stat.id === currentStatus+1 || stat.id === currentStatus -1 || stat.id === currentStatus) ?  <option key={index} data-tokens="Status1" value={stat.id} >{stat.value}</option>
-                  :  null
+                return   <option key={index} data-tokens="Status1" value={stat.id} >{stat.value}</option>
 
               })}
             </select>
