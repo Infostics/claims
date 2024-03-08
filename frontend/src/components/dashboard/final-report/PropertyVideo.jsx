@@ -14,7 +14,7 @@ import {
   calculateDepreciationsPercenatge,
   getMonthsDifference,
 } from "./functions";
-import { AccidentContent } from "./Content";
+import { AccidentContent, summaryNotes } from "./Content";
 
 const materials = [
   { qty: "12", desc: "12", price: "12" },
@@ -517,18 +517,10 @@ const [AccidentTime,setAccidentTime]=useState("");
     setDateOfBirth((claim?.driverDetails?.DateOfBirth) || "");
     //summary states
 
+    console.log("summaryNotes",summaryNotes(claim))
+
     setAccidentTime(claim?.accidentDetails?.TimeOfAccident ? claim?.accidentDetails?.TimeOfAccident : "");
-    setFinalReportNotes(claim?.summaryDetails?.SummaryNotes ? claim?.summaryDetails?.SummaryNotes : `
-    1. Reference No is coming at the place of claim No<br>
-    2. Date of Registration at the time of viewing the format is coming wrong.<br>
-    3. Driver and License Detail section<br>
-    4. Date of Birth and valid up to is coming invalid.<br>
-    5. map rc_fit_upto in tax particular.<br>
-    6. Commercial vehicle details should come on print if it is checked.<br>
-    7. Date of Accident is not coming in the right way.<br>
-    8. Sport Survey Received default Not conducted, As stated by insured<br>
-    9. All the variable we are fetching from Background needs to<br>
-    `);
+    setFinalReportNotes(claim?.summaryDetails?.SummaryNotes ? claim?.summaryDetails?.SummaryNotes : summaryNotes(claim));
 
     
     setTotalLabor(claim?.summaryDetails?.TotalLabor ? claim?.summaryDetails?.TotalLabor : 0 );
@@ -889,6 +881,7 @@ const [AccidentTime,setAccidentTime]=useState("");
       ValidUpto,
       leadId,
     };
+
 
     axios.put("/api/updateFinalReport",payload,{
       headers:{
