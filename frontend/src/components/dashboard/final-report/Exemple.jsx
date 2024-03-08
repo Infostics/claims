@@ -148,6 +148,20 @@ export default function Exemple_01({
   const [toggleGST, setToggleGST] = useState(2);
   const [preRender, setPreRender] = useState(true);
 
+  const generateSnoId = () => {
+    const now = new Date();
+    const yyyy = String(now.getFullYear());
+    const mm = String(now.getMonth() + 1).padStart(2, "0"); // Adding 1 because months are zero-indexed
+    const dd = String(now.getDate()).padStart(2, "0");
+    const hh = String(now.getHours()).padStart(2, "0");
+    const min = String(now.getMinutes()).padStart(2, "0");
+    const ss = String(now.getSeconds()).padStart(2, "0");
+    const ms = String(now.getMilliseconds()).padStart(2, "0");
+    const result = `${yyyy}${mm}${dd}${hh}${min}${ss}${ms}`;
+    return result;
+  };
+
+
   const [metalDep, setMetalDep] = useState(0);
   // const []
   const [change, setChange] = useState(false);
@@ -161,6 +175,7 @@ export default function Exemple_01({
   const [type, setType] = useState("");
   const [currentType, setCurrentType] = useState("Both");
   const [remark, setRemark] = useState("");
+  const [updatedSNO,setUpdatedSNO]=useState(0);
   const [gst, setGst] = useState(0);
   const [change2, setChange2] = useState(false);
 
@@ -197,6 +212,7 @@ export default function Exemple_01({
 
     const LeadID = window.location.pathname.split("/final-report/")[1];
 
+    let snoId = 0;
     axios
       .get("/api/getNewParts", {
         headers: {
@@ -230,6 +246,7 @@ export default function Exemple_01({
             const requiredTotal = part.WithTax === 1 || part.WithTax === 3   ? overall + GSTT : overall;
             console.log("requiredTotal",requiredTotal)
 
+            snoId = Number(snoId) < Number(part.SNO) ? part.SNO : snoId;
             const temp = {
               _id: index + 1,
               description: part.ItemName,
@@ -286,11 +303,14 @@ export default function Exemple_01({
         setTotalEstimate(total_estimate);
         setCurrentType(type);
         setChangeParts(true);
+        const newSNO = snoId !== 0 ? snoId : generateSnoId();
+        setUpdatedSNO(newSNO)
       })
       .catch((Err) => {
         alert(Err);
       });
   }, []);
+
 
   const roundOff = (value)=>{
     const roundedValue = parseFloat(value).toFixed(2);
@@ -384,27 +404,17 @@ export default function Exemple_01({
     setOpenSave(false);
   };
 
-  const generateReprotId = () => {
-    const now = new Date();
-    const yyyy = String(now.getFullYear());
-    const mm = String(now.getMonth() + 1).padStart(2, "0"); // Adding 1 because months are zero-indexed
-    const dd = String(now.getDate()).padStart(2, "0");
-    const hh = String(now.getHours()).padStart(2, "0");
-    const min = String(now.getMinutes()).padStart(2, "0");
-    const ss = String(now.getSeconds()).padStart(2, "0");
-    const ms = String(now.getMilliseconds()).padStart(2, "0");
-    const result = `${yyyy}${mm}${dd}${hh}${min}${ss}${ms}`;
-
-    console.log(result);
-    return result;
-  };
 
   const handleAddRow = () => {
+
+    const newSNO = Number(updatedSNO) + 1;
+    setUpdatedSNO(newSNO);
+
     console.log("inside");
     // Assuming a new row has a specific structure, adjust this as needed
     const newRow = {
       _id: allRows.length, // You may use a more robust ID generation logic
-      sno: generateReprotId(),
+      sno: newSNO,
       dep: 0, // Add default values or leave empty as needed
       description: "",
       sac: "",
@@ -420,6 +430,7 @@ export default function Exemple_01({
       isActive: 1,
     };
 
+    
     const old = allRows;
     old.push(newRow);
     console.log(old);
