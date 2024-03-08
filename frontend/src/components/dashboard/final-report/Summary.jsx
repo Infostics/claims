@@ -134,6 +134,7 @@ const Summary = ({
     setPhoneNumber(truncatedValue);
   };
 
+  console.log("summ",FinalReportNotes)
  
   console.log("meta",totalMetalRows)
 
@@ -730,8 +731,8 @@ const Summary = ({
                 <div className="col-lg-12">
                   <div className="">
                     <ReactEditor 
-                    index={10}
-                  readOnly={!isEditMode}
+                    index={8}
+                  readOnly={!isEdit}
                   editorContent={FinalReportNotes}
                   setEditorContent={setFinalReportNotes}
                 />
