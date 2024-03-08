@@ -20,15 +20,14 @@ const getSpecificNewParts = (req,res)=>{
   
       
       const data = JSON.parse(req.body.allRows);
-      
-      console.log("data");
-  
+ 
   
       const promises = data.map((row,index) => {
         return new Promise((resolve, reject) => {
           const insertQuery = `
             INSERT INTO NewPartsReport (
               DepreciationPct,
+              SNO,
               ItemName,
               HSNCode,
               Remark,
@@ -44,6 +43,7 @@ const getSpecificNewParts = (req,res)=>{
               LeadID
             ) VALUES (
               '${row.dep}',
+               ${row.sno},
               '${row.description}',
               '${row.sac}',
               '${row.remark}',
@@ -64,6 +64,7 @@ const getSpecificNewParts = (req,res)=>{
             UPDATE NewPartsReport
             SET
               DepreciationPct = '${row.dep}',
+              SNO=${row.sno},
               ItemName = '${row.description}',
               HSNCode='${row.sac}',
               Remark='${row.remark}',
