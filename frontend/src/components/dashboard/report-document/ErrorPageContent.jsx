@@ -532,27 +532,13 @@ const ErrorPageContent = ({ allInfo }) => {
       {/* common header for all page */}
 
       {/* Header Content */}
-      <div style={{ width: "", color: "black" }}>
+      {/* <div style={{ width: "", color: "black" }}>
         <h3 className="text-dark">MT Engineer</h3>{" "}
         <span>
           {" "}
-          <div style={{ position: "absolute", top: "10px", right: "10px" }}>
-            {/* <Dropdown>
-              <Dropdown.Toggle variant="primary" id="dropdown-extract">
-                Extract
-              </Dropdown.Toggle>
-              <Dropdown.Menu>
-                <Dropdown.Item onClick={() => handleExtract("Word")}>
-                  Extract to Word
-                </Dropdown.Item>
-                <Dropdown.Item>
-                  <button className="btn" onClick={downloadPDF}>
-                    Extract PDF
-                  </button>
-                </Dropdown.Item>
-              </Dropdown.Menu>
-            </Dropdown> */}
-          </div>
+          <div
+            style={{ position: "absolute", top: "10px", right: "10px" }}
+          ></div>
         </span>
         <p className="fw-bold text-dark">Legal Investigator Pvt. Ltd.</p>
         <p className="text-dark">
@@ -564,9 +550,17 @@ const ErrorPageContent = ({ allInfo }) => {
           <p className="text-dark">Tel. No. : +91 94688-81222</p>{" "}
           <p className="text-dark">Email: legalmt04@gmail.com</p>
         </div>
-        {/* <p>Email: {allInfo?.otherInfo[0]?.BrokerMailAddress}</p> */}
-        {/* <p>Lic No. IRDA/CORP/SLA-200018 DOE 07.02.2025</p> */}
         <p className="text-dark">GSTIN : 08AAPCM1051K1Z9</p>
+      </div> */}
+      <div>
+        <Image
+          width={561}
+          height={169}
+          priority
+          className="w50"
+          src="/assets/images/header.jpg"
+          alt="1.jpg"
+        />
       </div>
       <hr style={{ border: "2px solid black" }} />
       {/* Header Content */}
@@ -592,7 +586,10 @@ const ErrorPageContent = ({ allInfo }) => {
         <h4>
           {allInfo?.otherInfo[0]?.SurveyType} FINAL{" "}
           {allInfo?.otherInfo[0]?.InspectionType} REPORT (
-          {Number(allInfo?.summaryReport[0]?.CashLess) === 1 ? "CashLess" : "Cash"})- (
+          {Number(allInfo?.summaryReport[0]?.CashLess) === 1
+            ? "CashLess"
+            : "Cash"}
+          )- (
           {allInfo?.otherInfo[0]?.PolicyType
             ? allInfo?.otherInfo[0]?.PolicyType
             : "Regular"}
@@ -610,51 +607,65 @@ const ErrorPageContent = ({ allInfo }) => {
       <div>
         <h5 className="text-dark">INSURANCE PARTICULARS :</h5>
         <div className=" text-start d-flex gap-5 text-dark">
-          <div>
-            <label htmlFor="">(a) Policy / Cover Note No. : </label>
+          <div className="d-flex gap-4">
+            <div className="">
+              <label htmlFor="">(a) Policy / Cover Note No. </label>
+            </div>
+            <span> : </span>
             <span className="fw-bold text-dark">
               {" "}
               {allInfo?.otherInfo[0]?.PolicyNumber}
             </span>
           </div>
-          <div>
-            <label htmlFor="">IDV : -</label>
+          <div className="d-flex gap-4" style={{ marginLeft: "44px" }}>
+            <div className="">
+              <label htmlFor="">IDV</label>
+            </div>
+            <div>
+              <span>:</span>
+            </div>
             <span> F {allInfo?.otherInfo[0]?.IDV}</span>
           </div>
         </div>
         <div className="d-flex gap-5">
-          <div>
+          <div className="d-flex gap-4">
             <label htmlFor="">(b) Period of Insurance</label>
+            <span style={{ marginLeft: "26px" }}> : </span>
             <span>
               {" "}
               {formatDate(allInfo?.otherInfo[0]?.PolicyPeriodStart)} to{" "}
               {formatDate(allInfo?.otherInfo[0]?.PolicyPeriodEnd)}
             </span>
           </div>
-          <div>
-            <label htmlFor="">Claim No. : -</label>
+          <div className="d-flex gap-4">
+            <label htmlFor="">Claim No. </label>
+            <span>:</span>
             <span> {allInfo?.otherInfo[0]?.ClaimNumber} </span>
           </div>
         </div>
-        <div className=" text-start d-flex gap-5">
-          <div>
-            <label htmlFor="">(c) Endorsement : </label>
+        <div className="d-flex gap-5">
+          <div className="d-flex gap-4">
+            <label htmlFor="">(c) Endorsement </label>
+            <span style={{ marginLeft: "69px" }}>:</span>
             <span> 33030331230100004487</span>
           </div>
-          <div>
-            <label htmlFor="">Token No. : -</label>
+          <div className="d-flex gap-4" style={{ marginLeft: "22px" }}>
+            <label htmlFor="">Token No.</label>
+            <span>:</span>
             <span> {allInfo?.otherInfo[0].Token}</span>
           </div>
         </div>
         <div className=" text-start d-flex gap-5">
-          <div>
-            <label htmlFor="">(d) Insurers : </label>
+          <div className="d-flex gap-4">
+            <label htmlFor="">(d) Insurers </label>
+            <span style={{ marginLeft: "105px" }}>:</span>
             <span> {allInfo?.otherInfo[0]?.InsuranceCompanyNameAddress}</span>
           </div>
         </div>
         <div className=" text-start d-flex gap-5">
-          <div>
-            <label htmlFor="">(e) Insured : </label>
+          <div className="d-flex gap-4">
+            <label htmlFor="">(e) Insured </label>
+            <span style={{ marginLeft: "110px" }}>:</span>
             <span>
               {" "}
               {allInfo?.otherInfo[0]?.InsuredName}{" "}
@@ -664,14 +675,16 @@ const ErrorPageContent = ({ allInfo }) => {
           </div>
         </div>
         <div className=" text-start d-flex gap-5">
-          <div>
-            <label htmlFor="">(f) H. P. A. : </label>
-            <span> {allInfo?.otherInfo[0]?.HPA} - SGNR</span>
+          <div className="d-flex gap-4">
+            <label htmlFor="">(f) H.P.A. </label>
+            <span style={{ marginLeft: "120px" }}>:</span>
+            <span> {allInfo?.otherInfo[0]?.HPA} SGNR</span>
           </div>
         </div>
         <div className=" text-start d-flex gap-5">
-          <div>
-            <label htmlFor="">(g) Appointed By : </label>
+          <div className="d-flex gap-4">
+            <label htmlFor="">(g) Appointed By </label>
+            <span style={{ marginLeft: "63px" }}>:</span>
             <span> {allInfo?.otherInfo[0]?.VehicleInsuranceCompany}</span>
           </div>
         </div>
@@ -683,8 +696,9 @@ const ErrorPageContent = ({ allInfo }) => {
           <span>{allInfo?.otherInfo[0]?.Remark}</span>
         </div>
         <div className=" text-start d-flex gap-5">
-          <div>
-            <label htmlFor="">(a) Registered Number :</label>
+          <div className="d-flex gap-5">
+            <label htmlFor="">(a) Registered Number</label>
+            <span style={{ marginLeft: "125px" }}>:</span>
             <span className="fw-bold text-dark">
               {" "}
               {allInfo?.otherInfo[0]?.RegisteredNumber}
@@ -692,14 +706,15 @@ const ErrorPageContent = ({ allInfo }) => {
           </div>
         </div>
         <div className=" text-start d-flex gap-5">
-          <div>
-            <label htmlFor="">(b) Registered Owner :</label>
+          <div className="d-flexn gap-5">
+            <label htmlFor="">(b) Registered Owner </label>
+            <span style={{ marginLeft: "180px" }}>:</span>
             <span> {allInfo?.otherInfo[0]?.RegisteredOwner}</span>
           </div>
         </div>
 
         {/* common header for all page */}
-        <div className="col-lg-12 d-flex justify-content-between mt-5">
+        {/* <div className="col-lg-12 d-flex justify-content-between mt-5">
           <div>
             <h5>MT Engineer</h5>
           </div>
@@ -707,19 +722,21 @@ const ErrorPageContent = ({ allInfo }) => {
             <span>MSL/HMH/2024/11/10043 - RJ31CA6796</span>
           </div>
         </div>
-        <div style={{ border: "1px solid black" }} className="mb-2"></div>
+        <div style={{ border: "1px solid black" }} className="mb-2"></div> */}
         {/* common header for all page */}
 
-        <div className=" text-start d-flex gap-5">
-          <div>
-            <label htmlFor="">Owner Serial No. / Transfer Date :</label>
+        <div className="text-start d-flex gap-5">
+          <div className="d-flex gap-5">
+            <label htmlFor="">Owner Serial No. / Transfer Date</label>
+            <span style={{ marginLeft: "54px" }}>:</span>
             <span> {formatDate(allInfo?.otherInfo[0]?.TransferDate)}</span>
           </div>
         </div>
 
         <div className=" text-start d-flex gap-5">
-          <div>
-            <label htmlFor="">(c) Date of Registration :</label>
+          <div className="d-flex gap-5">
+            <label htmlFor="">(c) Date of Registration </label>
+            <span style={{ marginLeft: "120px" }}>:</span>
             <span>
               {" "}
               {formatDate(allInfo?.otherInfo[0]?.DateOfRegistration)}
@@ -728,8 +745,9 @@ const ErrorPageContent = ({ allInfo }) => {
         </div>
 
         <div className=" text-start d-flex gap-5">
-          <div>
-            <label htmlFor="">(d) Chassis Number :</label>
+          <div className="d-flex gap-5">
+            <label htmlFor="">(d) Chassis Number </label>
+            <span style={{ marginLeft: "145px" }}>:</span>
             <span className="fw-bold text-dark">
               {" "}
               {allInfo?.otherInfo[0]?.ChassisNumber}
@@ -738,15 +756,17 @@ const ErrorPageContent = ({ allInfo }) => {
         </div>
 
         <div className=" text-start d-flex gap-5">
-          <div>
-            <label htmlFor="">(f) Make / Variant/ Model /Color :</label>
+          <div className="d-flex gap-5">
+            <label htmlFor="">(f) Make / Variant/ Model /Color </label>
+            <span style={{ marginLeft: "60px" }}>:</span>
             <span> {allInfo?.otherInfo[0]?.MakeVariantModelColor}</span>
           </div>
         </div>
 
         <div className=" text-start d-flex gap-5">
-          <div>
-            <label htmlFor="">(g) Type of Body and Class of vehicle :</label>
+          <div className="d-flex gap-5">
+            <label htmlFor="">(g) Type of Body and Class of vehicle</label>
+            <span style={{ marginLeft: "20px" }}>:</span>
             <span>
               {" "}
               {allInfo?.otherInfo[0]?.TypeOfBody} (S) -{" "}
@@ -756,29 +776,33 @@ const ErrorPageContent = ({ allInfo }) => {
         </div>
 
         <div className=" text-start d-flex gap-5">
-          <div>
-            <label htmlFor="">(h) Pre Accident Condition :</label>
+          <div className="d-flex gap-5">
+            <label htmlFor="">(h) Pre Accident Condition </label>
+            <span style={{ marginLeft: "97px" }}>:</span>
             <span> {allInfo?.otherInfo[0]?.PreAccidentCondition}</span>
           </div>
         </div>
 
         <div className=" text-start d-flex gap-5">
-          <div>
-            <label htmlFor="">(k) Seating Capacity :</label>
+          <div className="d-flex gap-5">
+            <label htmlFor="">(k) Seating Capacity </label>
+            <span style={{ marginLeft: "140px" }}>:</span>
             <span> {allInfo?.otherInfo[0]?.SeatingCapacity} Nos.</span>
           </div>
         </div>
 
         <div className=" text-start d-flex gap-5">
-          <div>
-            <label htmlFor="">(l) Cubic Capacity :</label>
+          <div className="d-flex gap-5">
+            <label htmlFor="">(l) Cubic Capacity </label>
+            <span style={{ marginLeft: "157px" }}>:</span>
             <span>{allInfo?.otherInfo[0]?.CubicCapacity} CC</span>
           </div>
         </div>
 
         <div className=" text-start d-flex gap-5">
-          <div>
-            <label htmlFor="">(m) Tax particulars :</label>
+          <div className="d-flex gap-5">
+            <label htmlFor="">(m) Tax particulars </label>
+            <span style={{ marginLeft: "148px" }}>:</span>
             <span> {allInfo?.otherInfo[0]?.TaxParticulars}</span>
           </div>
         </div>
@@ -790,10 +814,11 @@ const ErrorPageContent = ({ allInfo }) => {
           <span>{allInfo?.otherInfo[0]?.Remark}</span>
         </div>
         <div className=" text-start d-flex gap-5">
-          <div>
+          <div className="d-flex gap-5">
             <label htmlFor="" className="text-dark">
-              (a) Name of Driver :
+              (a) Name of Driver
             </label>
+            <span style={{ marginLeft: "123px" }}>:</span>
             <span className="fw-bold text-dark">
               {" "}
               {allInfo?.otherInfo[0]?.DriverName}
@@ -801,8 +826,9 @@ const ErrorPageContent = ({ allInfo }) => {
           </div>
         </div>
         <div className=" text-start d-flex gap-5">
-          <div>
-            <label htmlFor="">Age :</label>
+          <div className="d-flex gap-5">
+            <label htmlFor="">Age </label>
+            <span style={{ marginLeft: "224px" }}>:</span>
             <span>
               {" "}
               {allInfo?.otherInfo[0]?.Age} Years ({" "}
@@ -815,8 +841,9 @@ const ErrorPageContent = ({ allInfo }) => {
         </div>
 
         <div className=" text-start d-flex gap-5">
-          <div>
-            <label htmlFor="">(b) Motor Driver License Number :</label>
+          <div className="d-flex gap-5">
+            <label htmlFor="">(b) Motor Driver License Number </label>
+            <span style={{ marginLeft: "20px" }}>:</span>
             <span className="fw-bold text-dark">
               {allInfo?.otherInfo[0]?.LicenseNumber}{" "}
             </span>
@@ -824,36 +851,41 @@ const ErrorPageContent = ({ allInfo }) => {
         </div>
 
         <div className=" text-start d-flex gap-5">
-          <div>
-            <label htmlFor="">Date of Issue :</label>
+          <div className="d-flex gap-5">
+            <label htmlFor="">Date of Issue </label>
+            <span style={{ marginLeft: "159px" }}>:</span>
             <span> {formatDate(allInfo?.otherInfo[0]?.DateOfIssue)}</span>
           </div>
         </div>
 
         <div className=" text-start d-flex gap-5">
-          <div>
-            <label htmlFor="">Valid from :</label>
+          <div className="d-flex gap-5">
+            <label htmlFor="">Valid from </label>
+            <span style={{ marginLeft: "178px" }}>:</span>
             <span> {formatDate(allInfo?.otherInfo[0]?.ValidFrom)}</span>
           </div>
         </div>
 
         <div className=" text-start d-flex gap-5">
-          <div>
-            <label htmlFor="">(c) Issuing Authority :</label>
+          <div className="d-flex gap-5">
+            <label htmlFor="">(c) Issuing Authority </label>
+            <span style={{ marginLeft: "107px" }}>:</span>
             <span> {allInfo?.otherInfo[0]?.IssuingAuthority}</span>
           </div>
         </div>
 
         <div className=" text-start d-flex gap-5">
-          <div>
-            <label htmlFor="">(d) Type of License :</label>
+          <div className="d-flex gap-5">
+            <label htmlFor="">(d) Type of License </label>
+            <span style={{ marginLeft: "117px" }}>:</span>
             <span>{allInfo?.otherInfo[0]?.LicenseType}</span>
           </div>
         </div>
 
         <div className=" text-start d-flex gap-5">
-          <div>
-            <label htmlFor="">(e) Badge Number :</label>
+          <div className="d-flex gap-5">
+            <label htmlFor="">(e) Badge Number </label>
+            <span style={{ marginLeft: "119px" }}>:</span>
             <span> {allInfo?.otherInfo[0]?.BadgeNumber}</span>
           </div>
         </div>
@@ -864,8 +896,9 @@ const ErrorPageContent = ({ allInfo }) => {
           <h5 className="text-dark">ACCIDENT & SURVEY PARTICULARS :</h5>
         </div>
         <div className=" text-start d-flex gap-5">
-          <div>
-            <label htmlFor="">(a) Date & Time of Accident :</label>
+          <div className="d-flex gap-5">
+            <label htmlFor="">(a) Date & Time of Accident </label>
+            <span style={{ marginLeft: "108px" }}>:</span>
             <span>
               {" "}
               {formatDateTime(allInfo?.otherInfo[0]?.TimeOfAccident)}
@@ -873,20 +906,23 @@ const ErrorPageContent = ({ allInfo }) => {
           </div>
         </div>
         <div className=" text-start d-flex gap-5">
-          <div>
-            <label htmlFor="">(b) Place of Accident :</label>
+          <div className="d-flex gap-5">
+            <label htmlFor="">(b) Place of Accident </label>
+            <span style={{ marginLeft: "158px" }}>:</span>
             <span> {allInfo?.otherInfo[0]?.PlaceOfLoss}</span>
           </div>
         </div>
         <div className=" text-start d-flex gap-5">
-          <div>
-            <label htmlFor="">(c) Place of Survey :</label>
+          <div className="d-flex gap-5">
+            <label htmlFor="">(c) Place of Survey </label>
+            <span style={{ marginLeft: "172px" }}>:</span>
             <span>{allInfo?.otherInfo[0]?.PlaceOfSurvey}</span>
           </div>
         </div>
         <div className=" text-start d-flex gap-5">
-          <div>
-            <label htmlFor="">(d) Date of Allotment of Survey :</label>
+          <div className="d-flex gap-5">
+            <label htmlFor="">(d) Date of Allotment of Survey </label>
+            <span style={{ marginLeft: "80px" }}>:</span>
             <span>
               {" "}
               {formatDate(allInfo?.otherInfo[0]?.SurveyAllotmentDate)}
@@ -895,7 +931,7 @@ const ErrorPageContent = ({ allInfo }) => {
         </div>
 
         {/* common header for all page */}
-        <div className="col-lg-12 d-flex justify-content-between">
+        {/* <div className="col-lg-12 d-flex justify-content-between">
           <div>
             <h5 className="text-dark">MT Engineer</h5>
           </div>
@@ -903,12 +939,13 @@ const ErrorPageContent = ({ allInfo }) => {
             <span>MSL/HMH/2024/11/10043 - RJ31CA6796</span>
           </div>
         </div>
-        <div style={{ border: "1px solid black" }} className="mb-2"></div>
+        <div style={{ border: "1px solid black" }} className="mb-2"></div> */}
         {/* common header for all page */}
 
         <div className=" text-start d-flex gap-5">
-          <div>
-            <label htmlFor="">(e) Date & Time of Survey :</label>
+          <div className="d-flex gap-5">
+            <label htmlFor="">(e) Date & Time of Survey </label>
+            <span style={{ marginLeft: "120px" }}>:</span>
             <span>
               {" "}
               {formatDate(allInfo?.otherInfo[0]?.SurveyConductedDate)}
@@ -916,10 +953,9 @@ const ErrorPageContent = ({ allInfo }) => {
           </div>
         </div>
         <div className=" text-start d-flex gap-5">
-          <div>
-            <label htmlFor="">
-              (f) Date of Receipt of Spot Survey Report :
-            </label>
+          <div className="d-flex gap-5">
+            <label htmlFor="">(f) Date of Receipt of Spot Survey Report</label>
+            <span style={{ marginLeft: "10px" }}>:</span>
             <span> Not Conducted, As stated by the insured.</span>
           </div>
         </div>
