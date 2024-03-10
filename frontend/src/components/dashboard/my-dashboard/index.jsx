@@ -165,14 +165,27 @@ const Index = () => {
         });
     }
   }, []);
+
+  const getCurrentLinkedClaim = (id)=>{
+    let tempClaim = {};
+    allClaims?.map((claim,index)=>{
+      if(String(claim.LeadID) === String(id)){
+        tempClaim = claim;
+      }
+    })
+    return tempClaim;
+  }
+
   useEffect(() => {
     let temp = [];
     if (selectedCard === 0) {
       temp = allClaims;
     } else {
-      temp = allClaims.filter((claim, index) => {
-        if (String(claim.CurrentStatus) === String(selectedCard)) {
-          return true;
+
+     
+      status.filter((status, index) => {
+        if (String(status.Status) === String(selectedCard)) {
+          temp.push(getCurrentLinkedClaim(status.LeadId));
         } else {
           return false;
         }
@@ -181,7 +194,7 @@ const Index = () => {
 
     console.log(temp);
 
-    setFilterCardClaim(temp);
+    setFilterCardClaim(temp.sort((a, b) => a.LeadID - b.LeadID));
   }, [selectedCard]);
   return (
     <>
@@ -247,7 +260,7 @@ const Index = () => {
                   allClaims={
                     searchInput || majorSearch || isRegionChange
                       ? filterClaims
-                      : allClaims
+                      : status
                   }
                   setSelectedCard={setSelectedCard}
                 />

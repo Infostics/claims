@@ -186,9 +186,8 @@ const PropertyVideo = ({ SomeComponent, leadId }) => {
     return 0;
   };
 
-  const calculateGSTWithoutPaintValue = (original, type, gst) => {
-    // console.log(original,type,gst,((Number(original) * (12.5))/100));
-    if (String(type) === "1" && gst % 2 === 0) {
+  const calculateGSTWithoutPaintValue = (original, type) => {
+    if (String(type) === "1") {
       return (Number(original) * 12.5) / 100;
     }
     return 0;

@@ -101,6 +101,7 @@ const uploadClaimMedia = (req, res) => {
 const uploadDocument = (req, res) => {
   const data = req.body;
 
+<<<<<<< Updated upstream
   
   const type = data.type;
   const file = data;
@@ -143,6 +144,79 @@ const uploadDocument = (req, res) => {
         }
         return res.status(200).json({ message: "Data inserted successfully." });
       });
+=======
+  console.log(data);
+  return ;
+
+  const type = data.type;
+  if(!data){
+    res.status(500)
+    .json({ error: "Error uploading documents ." });
+  }
+  const currentLeadId = data.leadId || data.data[0]?.leadId;
+
+  const currentData = data.data;
+  let LeadId = currentData[0]?.leadId;
+  currentData?.forEach((data, idx) => {
+    let files;
+
+    if (data.data) {
+      // Format 1: When data is an array
+      files = data.data.flat().map((file) => {
+        console.log("file", file.url);
+        return {
+          Photo1: file.url,
+          Attribute1: file.name,
+          leadID: LeadId,
+          docName: data.docName,
+          Location: file.location,
+          photo1Timestamp: file.time,
+          Photo1Latitude: file.location?.split(",")[0],
+          Photo1Longitude: file.location?.split(",")[1],
+        };
+      });
+       const claimToken = generateUniqueToken();
+
+
+  const insertTokeDteials =  String(type) === "1" ?  `
+    UPDATE ClaimDetails
+    SET InsuredToken='${claimToken}'
+    WHERE LeadId = ${LeadId};
+      ` : String(type) === "2" ?  `
+      UPDATE ClaimDetails
+      SET ImageToken='${claimToken}'
+      WHERE LeadId = ${LeadId};
+    `
+    :  `
+    UPDATE ClaimDetails
+    SET VideoToken='${claimToken}'
+    WHERE LeadId = ${LeadId};
+    `;
+
+  db.query(insertTokeDteials, (error, results) => {
+    if (error) {
+      console.error("Error inserting data into CL Details:", error);
+      return res.status(500).json({ error: "Error." });
+    }
+  });
+    } else {
+      // Format 2: When url is directly provided
+     
+      files = [
+        {
+          Photo1: data.url,
+          Attribute1: data.name,
+          leadID: data.leadId,
+          docName: data.docName,
+          Location: data.Location,
+          photo1Timestamp: data.Timestamp,
+          Photo1Latitude: data.Location?.split(",")[0],
+          Photo1Longitude: data.Location?.split(",")[1],
+        },
+      ];
+    }
+    console.log("FILSE------", files);
+>>>>>>> Stashed changes
 
 };
 
@@ -198,12 +272,14 @@ const uploadDocumentV2 = (req, res) => {
             .status(500)
             .json({ error: "Error inserting data into DocumentDetails." });
         }
+         return res.status(200).json({ message: "Data inserted successfully." });
       });
     })
    
 
   });
 
+<<<<<<< Updated upstream
   const claimToken = generateUniqueToken();
 
 
@@ -235,6 +311,8 @@ const uploadDocumentV2 = (req, res) => {
   
 
  
+=======
+>>>>>>> Stashed changes
 };
 
 const uploadMedia = async (req, res) => {
@@ -307,5 +385,9 @@ module.exports = {
   uploadDocument,
   uploadMedia,
   verifyReportUpload,
+<<<<<<< Updated upstream
   uploadDocumentV2
 };
+=======
+};
+>>>>>>> Stashed changes

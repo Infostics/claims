@@ -97,6 +97,7 @@ const AllStatistics = ({allClaims,setSelectedCard}) => {
       color: "#E6E6FA",
     },
   ];
+<<<<<<< Updated upstream
   console.log("allStatistics",allStatistics);
   const getCount = (item) => {
     console.log("item",item);
@@ -110,6 +111,23 @@ const AllStatistics = ({allClaims,setSelectedCard}) => {
     }, 0);
   };
   
+=======
+
+  console.log(allClaims)
+
+  const getCount = (providedIndex)=>{
+    let count =0;
+    
+    allClaims.map((stat,index)=>{
+     
+      if(String(stat.Status) === String(providedIndex)){
+        count  = count + 1;
+      }
+    })
+    console.log("count",count,providedIndex)
+    return count;
+  }
+>>>>>>> Stashed changes
 
   return (
     <>
@@ -126,7 +144,7 @@ const AllStatistics = ({allClaims,setSelectedCard}) => {
           >
             <div className="detais">
               <div className="timer fw-bold" style={{ fontSize: "32px" }}>
-                {getCount(item)}
+                {getCount(item.id)}
               </div>
               <p
                 style={{ fontSize: "12px", color: "black", fontWeight: "bold" }}

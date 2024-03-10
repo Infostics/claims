@@ -165,9 +165,15 @@ const CreateList = ({
         Insured: Insured,
         toMail: mailAddress,
         leadId: claim?.claimDetails?.LeadID,
+<<<<<<< Updated upstream
         BrokerMailAddress: claim?.claimDetails?.BrokerMailAddress,
         GarageMailAddress: claim?.garageDetails?.GarageNameAndAddress,
         Region: claim?.claimDetails?.Region,
+=======
+        BrokerMailAddress : claim?.claimDetails?.BrokerMailAddress,
+        GarageMailAddress : claim?.garageDetails?.GarageNameAndAddress,
+        Region:claim?.claimDetails?.Region,
+>>>>>>> Stashed changes
         type: 4,
         date: formatDate(new Date()),
       };

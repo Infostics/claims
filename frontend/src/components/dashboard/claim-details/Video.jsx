@@ -12,8 +12,12 @@ const Video = ({ videos }) => {
   const [selectedVideo, setSelectedVideo] = useState(0);
   const [capturedImages, setCapturedImages] = useState([]);
 
+<<<<<<< Updated upstream
   const [allLocations, setAllLocations] = useState([]);
 
+=======
+  console.log("videos",videos);
+>>>>>>> Stashed changes
   const handleVideoEnded = () => {
     setCapturedImages([]);
     setOpen(false);
@@ -293,6 +297,10 @@ const Video = ({ videos }) => {
                                 ></canvas>
                               </>
                             ) : (
+                              videos.length <=0 ?
+                              <p>No Videos Found !!</p>
+                              :
+                              <>
                               <Image
                                 width={492}
                                 height={190}
@@ -300,8 +308,6 @@ const Video = ({ videos }) => {
                                 src="/assets/images/background/7.jpg"
                                 alt="7.jpg"
                               />
-                            )}
-                            {!open && (
                               <div className="overlay_icon">
                                 <div
                                   onClick={() => setOpen(!open)}
@@ -311,7 +317,13 @@ const Video = ({ videos }) => {
                                   <span className="flaticon-play"></span>
                                 </div>
                               </div>
+                              </>
+                             
                             )}
+<<<<<<< Updated upstream
+=======
+                           
+>>>>>>> Stashed changes
                           </div>
                         </div>
                       </div>
@@ -341,6 +353,37 @@ const Video = ({ videos }) => {
           </div>
         </div>
       </div>
+<<<<<<< Updated upstream
+=======
+      {/* Custom Popup */}
+      {showPopup && (
+        <div className="custom-popup">
+          <div className="popup-content">
+            <p>{popupContent}</p>
+            <button onClick={handlePopupClose}>Close</button>
+            <><table>
+            <thead>
+              <tr>
+                <th>Id</th>
+                <th>Media FileName</th>
+              </tr>
+            </thead>
+            <tbody>
+              {data.map((item, index) => (
+                <tr key={index}>
+                  <td>{item.column1}</td>
+                  <td>{item.column2}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+          </>
+          </div>
+          
+        
+        </div>
+      )}
+>>>>>>> Stashed changes
     </>
   );
 };

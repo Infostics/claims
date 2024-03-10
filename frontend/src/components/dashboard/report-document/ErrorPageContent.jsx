@@ -586,10 +586,14 @@ const ErrorPageContent = ({ allInfo }) => {
         <h4>
           {allInfo?.otherInfo[0]?.SurveyType} FINAL{" "}
           {allInfo?.otherInfo[0]?.InspectionType} REPORT (
+<<<<<<< Updated upstream
           {Number(allInfo?.summaryReport[0]?.CashLess) === 1
             ? "CashLess"
             : "Cash"}
           )- (
+=======
+          {Number(allInfo?.summaryReport[0]?.CashLess) === 1 ? "CashLess" : "Cash"})- (
+>>>>>>> Stashed changes
           {allInfo?.otherInfo[0]?.PolicyType
             ? allInfo?.otherInfo[0]?.PolicyType
             : "Regular"}

@@ -21,7 +21,10 @@ const getSpecificNewParts = (req,res)=>{
       
       const data = JSON.parse(req.body.allRows);
  
+<<<<<<< Updated upstream
   
+=======
+>>>>>>> Stashed changes
       const promises = data.map((row,index) => {
         return new Promise((resolve, reject) => {
           const insertQuery = `

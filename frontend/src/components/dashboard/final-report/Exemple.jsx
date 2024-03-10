@@ -260,7 +260,11 @@ export default function Exemple_01({
               bill_sr: part.BillSr,
               gst: part.GSTPct,
               type: part.TypeOfMaterial,
+<<<<<<< Updated upstream
               total: requiredTotal,
+=======
+              total: String(part.WithTax) === "1" || String(part.WithTax) === "3" ? overall + GSTT: overall,
+>>>>>>> Stashed changes
               sno: part.ReportID,
               isActive: Number(part.IsActive),
             };
@@ -273,6 +277,7 @@ export default function Exemple_01({
                 : "Assessed";
               
             if (part.IsActive === 1) {
+              console.log(String("payus",part.WithTax) === "1" || String(part.WithTax) === "3" ? overall + GSTT: overall)             
               total_assessed = total_assessed + (overall + GSTT);
 
               metalParts  += (part.TypeOfMaterial === "Metal")?(overall+GSTT):0;
@@ -294,7 +299,7 @@ export default function Exemple_01({
         console.log("totalRows in firat load",allRows);
         setAllRows(temp_row);
         setCurrentType(type);
-        console.log("metal",metalParts)
+       
         settotalMetalRows(metalParts)
         setMetalSalvageValue(total_metal);
         setTotaAssessed(total_assessed);
@@ -302,15 +307,26 @@ export default function Exemple_01({
         setTotalPartsEstimate(total_estimate);
         setTotalEstimate(total_estimate);
         setCurrentType(type);
+      
         setChangeParts(true);
+<<<<<<< Updated upstream
         const newSNO = snoId !== 0 ? snoId : generateSnoId();
         setUpdatedSNO(newSNO)
+=======
+        
+>>>>>>> Stashed changes
       })
       .catch((Err) => {
         alert(Err);
       });
   }, []);
 
+<<<<<<< Updated upstream
+=======
+  useEffect(()=>{
+    changeTotalAccordingToPolicyType(currentType)
+  },[allRows])
+>>>>>>> Stashed changes
 
   const roundOff = (value)=>{
     const roundedValue = parseFloat(value).toFixed(2);
@@ -589,7 +605,7 @@ export default function Exemple_01({
     const total_without = overall - subtract;
     const total =
       total_without +
-      (toggleGST % 2 !== 0
+      (currentType === "" || currentType==="Both" || currentType === "assessed"
         ? (total_without * Number(currentField.gst)) / 100
         : 0);
     console.log(total, total_without, overall, subtract);
@@ -1128,7 +1144,12 @@ export default function Exemple_01({
     setChange(true);
   };
 
+<<<<<<< Updated upstream
  const calculateRowTotal=(sno)=>{
+=======
+
+  const calculateRowTotal=(sno)=>{
+>>>>>>> Stashed changes
     let requiredRow = {};
     allRows.map((row,index)=>{
       if(String(row.sno) === String(sno)){
@@ -1152,12 +1173,12 @@ export default function Exemple_01({
 
     const getData = () => {
       const sortedOne = sortNewParts();
-      console.log(sortedOne)
+      console.log("sortedOne",sortedOne)
       sortedOne.map((row, index) => {
         // console.log(row);
         if (Number(row.isActive) === 1) {
           const newRow = {
-            _id: index + 1, // You may use a more robust ID generation logic
+            _id: index + 1,
             row: (
               <button
                 className="flaticon-minus"
@@ -1400,7 +1421,11 @@ export default function Exemple_01({
               <input
                 className="form-control form-control-table"
                 type="number"
+<<<<<<< Updated upstream
                 value={roundOff(calculateRowTotal(row.sno))}
+=======
+                value={roundOff(calculateRowTotal(row.total))}
+>>>>>>> Stashed changes
                 // onChange={(e)=>handleChange(index,e.target.value,"gst")}
                 required
                 disabled={!edit}
@@ -1459,7 +1484,7 @@ export default function Exemple_01({
     <SmartTable
       title=""
       ToggleGST={toggleGST}
-      data={updatedCode}
+      data={(updatedCode)}
       headCells={headCells}
       dep={metalDep}
       handleAddRow={handleAddRow}
