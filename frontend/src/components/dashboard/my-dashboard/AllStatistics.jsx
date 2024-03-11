@@ -97,21 +97,6 @@ const AllStatistics = ({allClaims,setSelectedCard}) => {
       color: "#E6E6FA",
     },
   ];
-<<<<<<< Updated upstream
-  console.log("allStatistics",allStatistics);
-  const getCount = (item) => {
-    console.log("item",item);
-    
-    return allClaims.reduce((count, stat) => {
-      if (String(stat.CurrentStatus) === String(item.id)) {
-        return count + 1;
-      }
-      console.log("Count",count);
-      return count;
-    }, 0);
-  };
-  
-=======
 
   console.log(allClaims)
 
@@ -127,7 +112,7 @@ const AllStatistics = ({allClaims,setSelectedCard}) => {
     console.log("count",count,providedIndex)
     return count;
   }
->>>>>>> Stashed changes
+
 
   return (
     <>
