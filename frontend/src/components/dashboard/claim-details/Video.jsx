@@ -12,12 +12,9 @@ const Video = ({ videos }) => {
   const [selectedVideo, setSelectedVideo] = useState(0);
   const [capturedImages, setCapturedImages] = useState([]);
 
-<<<<<<< Updated upstream
   const [allLocations, setAllLocations] = useState([]);
 
-=======
-  console.log("videos",videos);
->>>>>>> Stashed changes
+
   const handleVideoEnded = () => {
     setCapturedImages([]);
     setOpen(false);
@@ -320,10 +317,7 @@ const Video = ({ videos }) => {
                               </>
                              
                             )}
-<<<<<<< Updated upstream
-=======
                            
->>>>>>> Stashed changes
                           </div>
                         </div>
                       </div>
@@ -353,8 +347,6 @@ const Video = ({ videos }) => {
           </div>
         </div>
       </div>
-<<<<<<< Updated upstream
-=======
       {/* Custom Popup */}
       {showPopup && (
         <div className="custom-popup">
@@ -383,7 +375,6 @@ const Video = ({ videos }) => {
         
         </div>
       )}
->>>>>>> Stashed changes
     </>
   );
 };
