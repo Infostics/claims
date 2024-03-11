@@ -656,7 +656,7 @@ const ErrorPageContent = ({ allInfo }) => {
           <div className="d-flex gap-4" style={{ marginLeft: "90px" }}>
             <label htmlFor="">Token No.</label>
             <span>:</span>
-            <span> {allInfo?.otherInfo[0].Token}</span>
+            <span> {allInfo?.otherInfo[0]?.Token}</span>
           </div>
         </div>
         <div className=" text-start d-flex gap-5">
